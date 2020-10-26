@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
 import Navbar from './components/layout/Navbar';
-import Users from './components/users/Users'
+import Users from './components/users/Users';
+import axios from 'axios';
 import './App.css';
 
 class App extends Component {
+  state = {
+    users: [],
+    loading: false,
+  };
+
+  async componentDidMount() {
+    const res = await axios.get('https://api.github.com/users');
+
+    this.setState({ users: res.data, loading: true });
+  }
+
   render() {
+    const { users, loading } = this.state;
+
     return (
       <div className='App'>
         <Navbar />
-        <div className="container">
-          <Users />
+        <div className='container'>
+          <Users loading={loading} users={users} />
         </div>
       </div>
     );
@@ -17,4 +31,3 @@ class App extends Component {
 }
 
 export default App;
- 
