@@ -6,8 +6,10 @@ const Navbar = ({ title, icon }) => {
   return (
     <nav className='navbar bg-primary'>
       <h1>
-        <i className={icon}></i>
-        <span style={{ marginLeft: '10px' }}>{title}</span>
+        <Link to="/">
+          <i className={icon}></i>
+          <span style={{ marginLeft: '10px' }}>{title}</span>
+        </Link>
       </h1>
       <ul>
         <li>
